@@ -1,6 +1,6 @@
 import { client } from "../../libs/client";
 import type { Thumbnail, pageStateType, Blog } from "../../src/types/MicroCms";
-import { AspectRatio, Center, Divider, Grid, GridItem, HStack, Text, Link as CLink, } from '@chakra-ui/react';
+import { AspectRatio, Center, Divider, Grid, GridItem, HStack, Text, Link as CLink, Box, } from '@chakra-ui/react';
 import type { NextPage } from 'next'
 import styles from '../../styles/Home.module.css'
 import Menu, { MenuList } from '../../src/components/Menu'
@@ -60,8 +60,9 @@ export const getStaticPaths = async()=>{
     };
 };
 // ページコンポーネント
-export default function BlogId({blog, isTag, setTag}:{blog: Blog[],isTag:pageStateType, setTag:Dispatch<SetStateAction<pageStateType>>}){
-
+export default function BlogId({blog, isTag, setTag}:{blog: Blog, isTag:pageStateType, setTag:Dispatch<SetStateAction<pageStateType>>}){
+    const dateprot = blog.createdAt.substring( 0, 10 ) ;
+    const date = dateprot.replace( /-/g, " / ");
     // console.log(blog)
     return(
         <>
@@ -79,16 +80,18 @@ export default function BlogId({blog, isTag, setTag}:{blog: Blog[],isTag:pageSta
                 bg={"back.100"} borderRadius={10} boxShadow="md"
                 >
                     <AspectRatio overflow={"hidden"} borderTopRadius={15} ratio={6 / 4}>
-                        <Image src='/1.jpg' alt=''  layout="fill" objectFit='cover'></Image>
+                        <Image src={ blog.thumbnail?.url ? blog.thumbnail.url : "/logo.png" } alt=''  layout="fill" objectFit='cover'></Image>
                     </AspectRatio>
-                    <Center p={5} fontWeight="bold" fontSize={20}>お台場にバーベキューに行ってきました。誕生日おめでとう！</Center>
+                    <Center p={5} fontWeight="bold" fontSize={20}>{blog.title}</Center>
                     <HStack fontSize={13} p={3} color="base.700">
-                        <Text>2022 / 08 /11</Text>
+                        <Text>{date}</Text>
                         <Text> : </Text>
-                        <Text>イベント</Text>
+                        <Text>{blog.tag}</Text>
                     </HStack>
                     <Divider />
-                    <Text p={5} fontSize={15}>今日は３年生でバーベキューに行ってきました。場所はお台場！まず近くのラウンドワンで体を動かした後に買い出しをして屋上の広場でバーベキューをしました。...今日は３年生でバーベキューに行ってきました。場所はお台場！まず近くのラウンドワンで体を動かした後に買い出しをして屋上の広場でバーベキューをしました。... 今日は３年生でバーベキューに行ってきました。場所はお台場！まず近くのラウンドワンで体を動かした後に買い出しをして屋上の広場でバーベキューをしました。...今日は３年生でバーベキューに行ってきました。場所はお台場！まず近くのラウンドワンで体を動かした後に買い出しをして屋上の広場でバーベキューをしました。... 今日は３年生でバーベキューに行ってきました。場所はお台場！まず近くのラウンドワンで体を動かした後に買い出しをして屋上の広場でバーベキューをしました。...今日は３年生でバーベキューに行ってきました。場所はお台場！まず近くのラウンドワンで体を動かした後に買い出しをして屋上の広場でバーベキューをしました。...今日は３年生でバーベキューに行ってきました。場所はお台場！まず近くのラウンドワンで体を動かした後に買い出しをして屋上の広場でバーベキューをしました。...今日は３年生でバーベキューに行ってきました。場所はお台場！まず近くのラウンドワンで体を動かした後に買い出しをして屋上の広場でバーベキューをしました。...今日は３年生でバーベキューに行ってきました。場所はお台場！まず近くのラウンドワンで体を動かした後に買い出しをして屋上の広場でバーベキューをしました。...今日は３年生でバーベキューに行ってきました。場所はお台場！まず近くのラウンドワンで体を動かした後に買い出しをして屋上の広場でバーベキューをしました。...</Text>
+                    <Box p={5} fontSize={15}>
+                        <div dangerouslySetInnerHTML={{ __html: blog.contents }}></div>
+                    </Box>
                 </GridItem>
 
                 <GridItem colSpan={{base: 2, md: 1}}>
