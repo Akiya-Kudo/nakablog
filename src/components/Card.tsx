@@ -34,7 +34,7 @@ export const Card = (props: Props) => {
             _hover={{ bg: "blackAlpha.200", filter: "grayscale(0.3)",}}
             >
                     <AspectRatio overflow={"hidden"} borderTopRadius={15} ratio={6 / 4}>
-                        <Image src={ props.thumbnail?.url ? props.thumbnail.url : "/1.jpg" } fill alt=''></Image>
+                        <Image src={ props.thumbnail?.url ? props.thumbnail.url : "/logo.png" } fill alt=''></Image>
                     </AspectRatio>
                     <LinkOverlay href={`blog/${props.id}`}>
                         <Center pt={3} fontWeight="bold" fontSize={20}>{ props.title }</Center>

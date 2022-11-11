@@ -6,7 +6,7 @@ import styles from '../../styles/Home.module.css'
 import Menu, { MenuList } from '../../src/components/Menu'
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 // ダイナミックSSGにおける型定義
 type BlogProp ={
     blog:{
@@ -20,8 +20,8 @@ type BlogProp ={
         title:string,
         updatedAt:string
     }
-
 }
+
 // コンポーネント
 const MenuSmallButton = ({text , bgcolor}: {text: string, bgcolor?: string}) => {
 
@@ -60,16 +60,14 @@ export const getStaticPaths = async()=>{
     };
 };
 // ページコンポーネント
-export default function BlogId({blog}:BlogProp){
-
-    const [pageState, setPageState] = useState<pageStateType>("ホーム");
+export default function BlogId({blogs, isTag, setTag}:{blogs: Blog[],isTag:pageStateType, setTag:Dispatch<SetStateAction<pageStateType>>}){
     
     // console.log(blog)
     return(
         <>
         <Grid bg={"back.300"} templateColumns={{base: "repeat(1, 1fr)", md: "repeat(4, 1fr)"}} className={styles.container}>
             <GridItem colSpan={1}>
-                <Menu isTag={pageState} setTag={ setPageState }/>
+                <Menu isTag={isTag} setTag={ setTag }/>
             </GridItem>
             <GridItem colSpan={{base: 1, md: 3}}>
             <Grid
