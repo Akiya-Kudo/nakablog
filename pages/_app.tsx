@@ -7,7 +7,7 @@ import { pageStateType } from '../src/types/MicroCms'
 import { useState } from 'react'
 
 const breakpoints = createBreakpoints({
-  sm: "48.1em", 
+  sm: "48.1em",
   md: "68.7em",
   lg: "78.1em",
   xl: "93.7em",
@@ -16,7 +16,7 @@ const breakpoints = createBreakpoints({
 
 function MyApp({ Component, pageProps }: AppProps) {
 
-  const [pageState, setPageState] = useState<pageStateType>("日常");
+  const [pageState, setPageState] = useState<pageStateType>("ホーム");
 
   const theme = extendTheme({
     breakpoints: breakpoints,
@@ -42,7 +42,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         700: "#cd1327",
         900: "#c04853",
       },
-    } 
+    }
   })
   return (
     <ChakraProvider theme={theme}>

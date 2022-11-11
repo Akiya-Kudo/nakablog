@@ -7,6 +7,7 @@ import type { NextPage } from 'next'
 import styles from '../styles/Home.module.css'
 import Menu from '../src/components/Menu'
 import { Card } from '../src/components/Card'
+import { useState } from 'react';
 
 export const getStaticProps = async()=>{
     const data = await client.get({endpoint: "blog"})
@@ -17,28 +18,30 @@ export const getStaticProps = async()=>{
     }
 }
 
+
+
 const Cards = ({blogs, isTag}:{blogs: Blog[], isTag:pageStateType} ) => {
-  
-  let displayBlogs = blogs;
-  let a = displayBlogs.map((blog:Blog)=> <Card key={blog.id} id={blog.id} thumbnail={blog.thumbnail} title={blog.title} createdAt={blog.createdAt} content={blog.contents} tag={blog.tag}/>)
+
+  const[displayBlogs, setDisplayBlogs] = useState(blogs)
+//   let a = displayBlogs.map((blog:Blog)=> <Card key={blog.id} id={blog.id} thumbnail={blog.thumbnail} title={blog.title} createdAt={blog.createdAt} content={blog.contents} tag={blog.tag}/>)
   useEffect(() => {
+    const homeBlogs = blogs;
     const eventBlogs = blogs.filter((blog:Blog) => blog.tag[0] == "イベント")
     const dailyBlogs = blogs.filter((blog:Blog) =>  blog.tag[0] == "日常")
     const studyBlogs = blogs.filter((blog:Blog) =>  blog.tag[0] == "研究")
     const otherBlogs = blogs.filter((blog:Blog) =>  blog.tag[0] == "その他")
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    if(isTag == "イベント") displayBlogs = eventBlogs;
-    if(isTag == "日常") displayBlogs = dailyBlogs;
-    if(isTag == "研究") displayBlogs = studyBlogs;
-    if(isTag == "その他") displayBlogs = otherBlogs;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    a = displayBlogs.map((blog:Blog)=> <Card key={blog.id} id={blog.id} thumbnail={blog.thumbnail} title={blog.title} createdAt={blog.createdAt} content={blog.contents} tag={blog.tag}/>)
-    console.log(a)
+    if(isTag == "ホーム") setDisplayBlogs(homeBlogs);
+    if(isTag == "イベント") setDisplayBlogs(eventBlogs);
+    if(isTag == "日常") setDisplayBlogs(dailyBlogs) ;
+    if(isTag == "研究") setDisplayBlogs(studyBlogs);
+    if(isTag == "その他") setDisplayBlogs(otherBlogs);
+    console.log(displayBlogs)
   },[isTag]);
 
   return (
     <>
-      { a }
+      { displayBlogs.map((blog:Blog)=> <Card key={blog.id} id={blog.id} thumbnail={blog.thumbnail} title={blog.title} createdAt={blog.createdAt} content={blog.contents} tag={blog.tag}/>)}
     </>
   )
 }
@@ -46,7 +49,6 @@ const Cards = ({blogs, isTag}:{blogs: Blog[], isTag:pageStateType} ) => {
 const Home: NextPage<Props> = ({blogs, isTag, setTag}:{blogs: Blog[],isTag:pageStateType, setTag:Dispatch<SetStateAction<pageStateType>>}) => {
 
   // console.log(blogs);
-
 
 
   return (

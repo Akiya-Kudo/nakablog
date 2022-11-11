@@ -60,8 +60,8 @@ export const getStaticPaths = async()=>{
     };
 };
 // ページコンポーネント
-export default function BlogId({blogs, isTag, setTag}:{blogs: Blog[],isTag:pageStateType, setTag:Dispatch<SetStateAction<pageStateType>>}){
-    
+export default function BlogId({blog, isTag, setTag}:{blog: Blog[],isTag:pageStateType, setTag:Dispatch<SetStateAction<pageStateType>>}){
+
     // console.log(blog)
     return(
         <>
