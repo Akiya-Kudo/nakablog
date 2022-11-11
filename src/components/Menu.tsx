@@ -1,12 +1,12 @@
 import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box, Center, Heading, HStack, Image, Link as CLink, Stack, Text, VStack, } from '@chakra-ui/react'
-import React, { Dispatch, SetStateAction } from 'react'
+import React, { Dispatch, SetStateAction ,useEffect,useState} from 'react'
 import Link from 'next/link'
 import styles from '../../styles/Home.module.css'
 import { basename } from 'path'
-import { pageStateType } from '../types/MicroCms'
+import { pageStateType, Blog, Props, TagBlogNumbers } from '../types/MicroCms';
+import { useTagBlogNumbers } from '../hooks/useSortBlogs'
 
-const MenuButton = ({text , isTag, setTag }: {text: pageStateType,isTag:pageStateType, setTag:Dispatch<SetStateAction<pageStateType>>}) => {
-
+const MenuButton = ({text , isTag, setTag, number}: {text: pageStateType,isTag:pageStateType, setTag:Dispatch<SetStateAction<pageStateType>>, number:Number}) => {
   let bgIsTag = "";
   if(isTag == text) {
     bgIsTag = "base.500";
@@ -17,24 +17,29 @@ const MenuButton = ({text , isTag, setTag }: {text: pageStateType,isTag:pageStat
       <CLink as="a" className={ styles.link }>
           <Center as="button" onClick={() => setTag(text) } fontSize={15} fontWeight="bold" bg={bgIsTag} w="100%" h={70} _hover={{ bg: "base.300" }} borderRadius={10}>
             {text}
-            (10)
+            ({number})
           </Center>
       </CLink>
     </Link>
   )
 }
 
-export const  MenuList = ({isTag, setTag}:{isTag:pageStateType, setTag:Dispatch<SetStateAction<pageStateType>>}) => {
+export const  MenuList = ({isTag, setTag,number}:{isTag:pageStateType, setTag:Dispatch<SetStateAction<pageStateType>>,number:TagBlogNumbers}) => {
 
 
-  
   return (
     <>
-      <MenuButton text="ホーム" isTag={isTag} setTag={ setTag }/>
-      <MenuButton text="イベント" isTag={isTag} setTag={ setTag }/>
-      <MenuButton text="日常" isTag={isTag} setTag={ setTag }/>
-      <MenuButton text="研究" isTag={isTag} setTag={ setTag }/>
-      <MenuButton text="その他" isTag={isTag} setTag={ setTag }/>
+    {number==undefined ?
+    null
+    :
+    <>
+    <MenuButton text="ホーム" isTag={isTag} setTag={ setTag }  number={number.homeBlogs}/>
+    <MenuButton text="イベント" isTag={isTag} setTag={ setTag } number={number.eventBlogs} />
+    <MenuButton text="日常" isTag={isTag} setTag={ setTag } number={number.dailyBlogs}/>
+    <MenuButton text="研究" isTag={isTag} setTag={ setTag } number={number.studyBlogs}/>
+    <MenuButton text="その他" isTag={isTag} setTag={ setTag } number={number.otherBlogs}/>
+    </>
+    }
     </>
   )
 }
@@ -57,9 +62,8 @@ const AccordionMenu = ({isTag, setTag}:{isTag:pageStateType, setTag:Dispatch<Set
   )}
 
 
-const Menu = ({isTag, setTag}:{isTag:pageStateType, setTag:Dispatch<SetStateAction<pageStateType>>}) => {
-
-
+const Menu = ({isTag, setTag, blogs}:{isTag:pageStateType, setTag:Dispatch<SetStateAction<pageStateType>>, blogs:Blog[]}) => {
+   const number = useTagBlogNumbers(blogs)
   return (
     <>
         <Box p={3} bg={"back.100"} minHeight={{base: "200px", md: "100vh"}} boxShadow="md" pos={{base: "unset", md: "fixed"}} w={{base: "100vw", md: "25vw"}}>
@@ -70,7 +74,9 @@ const Menu = ({isTag, setTag}:{isTag:pageStateType, setTag:Dispatch<SetStateActi
             </HStack>
           </VStack>
             <Box display={{base: "none", md: "block"}}>
-              <MenuList isTag={isTag} setTag={ setTag }/>
+                {typeof number== undefined?
+                null
+                :<MenuList isTag={isTag} setTag={ setTag} number={number}/>}
             </Box>
             <AccordionMenu isTag={isTag} setTag={ setTag }/>
         </Box>

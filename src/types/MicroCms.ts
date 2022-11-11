@@ -1,3 +1,4 @@
+import { useTagBlogNumbers } from '../hooks/useSortBlogs';
 export type Thumbnail ={
     height:number,
     url:string,
@@ -19,6 +20,14 @@ export type Blog = {
 
 export type Props = {
     blogs:Array<Blog>
+}
+
+export type TagBlogNumbers={
+    homeBlogs:   Number,
+    eventBlogs:  Number,
+    dailyBlogs:  Number,
+    studyBlogs:  Number,
+    otherBlogs:  Number,
 }
 
 export type pageStateType = 'ホーム' | 'イベント' | '日常' | '研究' | 'その他';

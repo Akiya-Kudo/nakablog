@@ -34,15 +34,12 @@ const Cards = ({blogs, isTag}:{blogs: Blog[], isTag:pageStateType} ) => {
 
 const Home: NextPage<Props> = ({blogs, isTag, setTag}:{blogs: Blog[],isTag:pageStateType, setTag:Dispatch<SetStateAction<pageStateType>>}) => {
 
-  // console.log(blogs);
-
-
   return (
     <>
     <Grid bg={"back.300"} templateColumns={{base: "repeat(1, 1fr)", md: "repeat(4, 1fr)"}} className={styles.container}>
       <GridItem colSpan={1}>
           {/* blogsの中から必要なパラメータをpropsで渡す。 */}
-        <Menu isTag={isTag} setTag={ setTag }/>
+        <Menu isTag={isTag} setTag={ setTag} blogs= {blogs}/>
       </GridItem>
       <GridItem colSpan={{base: 1, md: 3}}>
         <Grid templateColumns={{base: "repeat(1, 1fr)", sm: "repeat(2, 1fr)", lg: "repeat(3, 1fr)", xl: "repeat(4, 1fr)", "2xl":  "repeat(5, 1fr)" }} gap={5} p={5}>
