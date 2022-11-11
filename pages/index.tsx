@@ -56,7 +56,7 @@ const Home: NextPage<Props> = ({blogs, isTag, setTag}:{blogs: Blog[],isTag:pageS
             </Center>
           </GridItem>
           <Cards blogs={blogs} isTag={isTag}/>
-        </Grid>
+git         </Grid>
       </GridItem>
     </Grid>
         {/* <Box bg={{ base: "red.200", sm: "yellow.200", md: "green.200", lg: "blue.200" , xl: "blue.900", "2xl": "red.500"}} ></Box> */}
