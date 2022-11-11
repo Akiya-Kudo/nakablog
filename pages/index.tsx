@@ -8,6 +8,7 @@ import styles from '../styles/Home.module.css'
 import Menu from '../src/components/Menu'
 import { Card } from '../src/components/Card'
 import { useState } from 'react';
+import { useSortBlogs } from '../src/hooks/useSortBlogs';
 
 export const getStaticProps = async()=>{
     const data = await client.get({endpoint: "blog"})
@@ -22,22 +23,7 @@ export const getStaticProps = async()=>{
 
 const Cards = ({blogs, isTag}:{blogs: Blog[], isTag:pageStateType} ) => {
 
-  const[displayBlogs, setDisplayBlogs] = useState(blogs)
-//   let a = displayBlogs.map((blog:Blog)=> <Card key={blog.id} id={blog.id} thumbnail={blog.thumbnail} title={blog.title} createdAt={blog.createdAt} content={blog.contents} tag={blog.tag}/>)
-  useEffect(() => {
-    const homeBlogs = blogs;
-    const eventBlogs = blogs.filter((blog:Blog) => blog.tag[0] == "イベント")
-    const dailyBlogs = blogs.filter((blog:Blog) =>  blog.tag[0] == "日常")
-    const studyBlogs = blogs.filter((blog:Blog) =>  blog.tag[0] == "研究")
-    const otherBlogs = blogs.filter((blog:Blog) =>  blog.tag[0] == "その他")
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    if(isTag == "ホーム") setDisplayBlogs(homeBlogs);
-    if(isTag == "イベント") setDisplayBlogs(eventBlogs);
-    if(isTag == "日常") setDisplayBlogs(dailyBlogs) ;
-    if(isTag == "研究") setDisplayBlogs(studyBlogs);
-    if(isTag == "その他") setDisplayBlogs(otherBlogs);
-    console.log(displayBlogs)
-  },[isTag]);
+  const displayBlogs = useSortBlogs(blogs, isTag);
 
   return (
     <>
@@ -56,7 +42,6 @@ const Home: NextPage<Props> = ({blogs, isTag, setTag}:{blogs: Blog[],isTag:pageS
     <Grid bg={"back.300"} templateColumns={{base: "repeat(1, 1fr)", md: "repeat(4, 1fr)"}} className={styles.container}>
       <GridItem colSpan={1}>
           {/* blogsの中から必要なパラメータをpropsで渡す。 */}
-        {/* <Menu blogs={blogs}/> */}
         <Menu isTag={isTag} setTag={ setTag }/>
       </GridItem>
       <GridItem colSpan={{base: 1, md: 3}}>
