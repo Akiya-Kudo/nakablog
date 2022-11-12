@@ -86,8 +86,11 @@ export default function BlogId({blog, blogs, isTag, setTag}:{blog: Blog,blogs:Bl
     const categoryNum = useTagBlogNumbers(blogs)
     console.log(categoryNum)
 
+
     const headingCorrectedBlog = blog.contents.replace( /<h1/g, '<h1 style="font-size: 35px; font-weight: bolder" ').replace( /<h2/g, '<h2 style="font-size: 25px; font-weight: bolder" ').replace( /<h3/g, '<h3 style="font-size: 20px; font-weight: bolder" ').replace( /<h4/g, '<h4 style="font-size: 15px; font-weight: bolder" ').replace( /<h5/g, '<h5 style="font-size: 13px; font-weight: bolder" ');
+
     // const sanitizedContent = sanitizeHtml(blog.contents , { allowedTags: ["p", "br" , "img", "a", "strong", "em", "s", "code", "span","h6","h5","h4","h3","h2","h1","li", "pre", "ul", "sup","sub"], allowedAttributes: { button: ['class'], img: [ 'src', 'srcset', 'alt', 'title', 'width', 'height', 'loading' ], p: ["style"], a: ["href"]},disallowedTagsMode: 'escape', });
+
 
     return(
         <>
@@ -138,7 +141,7 @@ export default function BlogId({blog, blogs, isTag, setTag}:{blog: Blog,blogs:Bl
                             <Text mx={5} mt={2} mb={2} fontSize={15} fontWeight="bold" borderBottom={"2px solid #ffbb8a"}>アーカイブ</Text>
                             <Accordion defaultIndex={[0]} allowMultiple>
                                 {Object.keys(archive).map((index)=>(
-                                    <AccordionItem>
+                                    <AccordionItem key={index}>
                                         <h2>
                                             <AccordionButton _hover={{bg:"whiteAlpha.900"}}>
                                                 <Box flex='1' textAlign='left'>
@@ -165,8 +168,8 @@ export default function BlogId({blog, blogs, isTag, setTag}:{blog: Blog,blogs:Bl
 
                                 ))}
                             </Accordion>
-                         
-            
+
+
                         </GridItem>
                     </Grid>
                 </GridItem>

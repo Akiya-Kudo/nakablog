@@ -44,7 +44,7 @@ export const useTagBlogNumbers =(blogs:Blog[])=>{
 
 // アーカイブ機能
 export const useArchive = (blogs:Blog[])=>{
-    // ブログのデータを取得
+    // 日付持ってきて
     const formatDate = (date: string | number | dayjs.Dayjs | Date) => {
         const formattedDate = dayjs.utc(date).tz("Asia/Tokyo").format("YYYY_MM");
         return formattedDate;

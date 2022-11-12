@@ -42,8 +42,8 @@ function MyApp({ Component, pageProps }: AppProps) {
         700: "#fd8f3f",
         900: "#c04853",
       },
-      
-    }
+
+    },
   })
   return (
     <ChakraProvider theme={theme}>

@@ -16,10 +16,9 @@ const MenuButton = ({text , isTag, setTag, number}: {text: pageStateType,isTag:p
 
   return (
     <Link href="/" legacyBehavior passHref className={ styles.link }>
-      <CLink as="a" className={ styles.link }>
-          <Center as="button" onClick={() => setTag(text) } fontSize={15} fontWeight="bold" bg={bgIsTag} w="100%" h={70} _hover={{ bg: hoverBg }} borderRadius={10} color={fontColor} borderBottom="2px solid #a4dce1" borderRight="2px solid #a4dce1" mt={3}>
+      <CLink as="div" className={ styles.link }>
+          <Center as="a" onClick={() => setTag(text) } fontSize={15} fontWeight="bold" bg={bgIsTag} w="100%" h={70} textDecoration='none' _hover={{ bg: hoverBg, textDecorationColor:'none', textDecorationLine:0 }} borderRadius={10} color={fontColor} borderBottom="2px solid #a4dce1" borderRight="2px solid #a4dce1" mt={3}>
             {`${text}(${number})`}
-
           </Center>
       </CLink>
     </Link>
