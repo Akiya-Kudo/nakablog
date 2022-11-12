@@ -21,7 +21,7 @@ export const useSortBlogs = (blogs: Blog[], isTag:pageStateType) => {
         if(isTag == "日常") setDisplayBlogs(dailyBlogs) ;
         if(isTag == "研究") setDisplayBlogs(studyBlogs);
         if(isTag == "その他") setDisplayBlogs(otherBlogs);
-        // console.log(displayBlogs)
+
       // eslint-disable-next-line react-hooks/exhaustive-deps
       },[isTag]);
 
