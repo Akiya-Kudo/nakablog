@@ -54,7 +54,7 @@ export const getStaticProps = async(context: { params: { id: any; }; }) => {
 // コンポーネント
 const MenuSmallButton = ({text , bgcolor, number}: {text: string, bgcolor?: string, number:String}) => {
     return (
-      <Box href="" legacyBehavior className={ styles.link }>
+      <Box href=""  className={ styles.link }>
         <CLink as="a" className={ styles.link }>
             <HStack left="0px" mx={5} color={"gray"} pos={"relative"} _hover={{ left: "3px", color:"blackAlpha.900", transition: "0.5s" }}  fontSize={15} fontWeight="bold" borderRadius={5} className={styles.linkSmall}>
                 <Text  mx={5}  bg={bgcolor} h={30}  borderRadius={10}>
@@ -73,10 +73,7 @@ export default function BlogId({blog, blogs, isTag, setTag}:{blog: Blog,blogs:Bl
     const date = dateprot.replace( /-/g, " / ");
     // 月別アーカイブ
     const archive = useArchive(blogs)
-
-    // const archiveLength = archive.
-    // const mounth =
-    // console.log(blog)
+    
     return(
         <>
         <Grid bg={"back.300"} templateColumns={{base: "repeat(1, 1fr)", md: "repeat(4, 1fr)"}} className={styles.container}>
