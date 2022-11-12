@@ -23,11 +23,15 @@ export const useSortBlogs = (blogs: Blog[], isTag:pageStateType) => {
 }
 
 export const useTagBlogNumbers =(blogs:Blog[])=>{
-    const tagBlogNumber ={ homeBlogs: blogs.length,
-        eventBlogs: blogs.filter((blog: Blog) => blog.tag[0] == "イベント").length,
-        dailyBlogs: blogs.filter((blog: Blog) => blog.tag[0] == "日常").length,
-        studyBlogs: blogs.filter((blog: Blog) => blog.tag[0] == "研究").length,
-        otherBlogs: blogs.filter((blog: Blog) => blog.tag[0] == "その他").length
+    if(typeof blogs !== undefined){
+        const tagBlogNumber ={ homeBlogs: blogs.length,
+            eventBlogs: blogs.filter((blog: Blog) => blog.tag[0] == "イベント").length,
+            dailyBlogs: blogs.filter((blog: Blog) => blog.tag[0] == "日常").length,
+            studyBlogs: blogs.filter((blog: Blog) => blog.tag[0] == "研究").length,
+            otherBlogs: blogs.filter((blog: Blog) => blog.tag[0] == "その他").length
+        }
+        return tagBlogNumber;
+    }else{
+        return null;
     }
-    return tagBlogNumber;
 }
