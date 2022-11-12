@@ -12,6 +12,7 @@ import { useSortBlogs } from '../src/hooks/useSortBlogs';
 
 export const getStaticProps = async()=>{
     const data = await client.get({endpoint: "blog"})
+    console.log(data);
     return{
         props:{
             blogs:data.contents,
@@ -45,11 +46,14 @@ const Home: NextPage<Props> = ({blogs, isTag, setTag}:{blogs: Blog[],isTag:pageS
         <Grid templateColumns={{base: "repeat(1, 1fr)", sm: "repeat(2, 1fr)", lg: "repeat(3, 1fr)", xl: "repeat(4, 1fr)", "2xl":  "repeat(5, 1fr)" }} gap={5} p={5}>
           <GridItem
             colSpan={{base: 1, sm: 2, lg: 3, xl: 4, "2xl": 5 }}
-            bg={"base.500"}
+            // bg={"base.500"}
             borderRadius={10}
+            color="base.700"
           >
             <Center fontWeight={"bold"} minHeight={50}>
+              <Box borderBottom="2px solid #f4c78a">
               { isTag }
+              </Box>
             </Center>
           </GridItem>
           <Cards blogs={blogs} isTag={isTag}/>

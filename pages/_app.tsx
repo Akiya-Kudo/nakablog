@@ -22,8 +22,8 @@ function MyApp({ Component, pageProps }: AppProps) {
     breakpoints: breakpoints,
     colors: {
       back: {
-        100: "rgb(255, 255, 246)",
-        300: "rgb(251, 251, 235)",
+        100: "#fcfbfa",
+        300: "#f4f9f9",
         500: "rgb(243, 243, 220)",
         700: "rgb(255, 255, 243)",
         900: "rgb(167, 167, 58)",
@@ -31,17 +31,18 @@ function MyApp({ Component, pageProps }: AppProps) {
       base: {
         100: "#cee8e2",
         300: "#a5e8cb",
-        500: "#61cea2",
-        700: "#009b85",
+        500: "#a4dce1",
+        700: "#4494a3",
         900: "rgb(58, 131, 63)",
       },
       accent: {
         100: "#f3a599",
-        300: "#ed7966",
-        500: "#e9421b",
-        700: "#cd1327",
+        300: "#ffbb8a",
+        500: "#fa9d5a",
+        700: "#fd8f3f",
         900: "#c04853",
       },
+      
     }
   })
   return (

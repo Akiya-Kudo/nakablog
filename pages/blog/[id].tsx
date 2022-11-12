@@ -94,9 +94,9 @@ export default function BlogId({blog, blogs, isTag, setTag}:{blog: Blog,blogs:Bl
                 bg={"back.100"} borderRadius={10} boxShadow="md"
                 >
                     <AspectRatio overflow={"hidden"} borderTopRadius={15} ratio={6 / 4}>
-                        <Image src={ blog.thumbnail?.url ? blog.thumbnail.url : "/logo.png" } alt=''  layout="fill" objectFit='cover'></Image>
+                    {blog.thumbnail?.url ? <Image src={ blog.thumbnail.url }  alt='' fill/> : <Image src="/logo.png"  alt='' fill objectFit='contain' />}
                     </AspectRatio>
-                    <Center p={5} fontWeight="bold" fontSize={20}>{blog.title}</Center>
+                    <Center p={5} fontWeight="bold" fontSize={30}>{blog.title}</Center>
                     <HStack fontSize={13} p={3} color="base.700">
                         <Text>{date}</Text>
                         <Text> : </Text>
@@ -124,7 +124,7 @@ export default function BlogId({blog, blogs, isTag, setTag}:{blog: Blog,blogs:Bl
                         <GridItem
                         colSpan={1} bg={"back.100"} borderRadius={10} boxShadow="md" p={3}
                         >
-                            <Text mx={5} mt={2} mb={2} fontSize={15} fontWeight="bold" borderBottom={"2px solid #a5e8cb"}>アーカイブ</Text>
+                            <Text mx={5} mt={2} mb={2} fontSize={15} fontWeight="bold" borderBottom={"2px solid #fcac74"}>アーカイブ</Text>
                             <MenuSmallButton text="2021 / 7 "/>
                             <MenuSmallButton text="2021 / 6 "/>
                             <MenuSmallButton text="2021 / 5 "/>
