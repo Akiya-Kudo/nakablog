@@ -45,9 +45,13 @@ const MenuSmallButton = ({text , bgcolor}: {text: string, bgcolor?: string}) => 
 export const getStaticProps = async(context: { params: { id: any; }; }) => {
     const id = context.params.id;
     const data = await client.get({endpoint:"blog", contentId: id})
+    const Blogsdata = await client.get({endpoint: "blog"})
     return {
         props:{
+            // ブログ詳細のデータ
             blog:data,
+            // 全ブログのデータ
+            blogs:Blogsdata.contents
         },
     };
 };
@@ -62,10 +66,12 @@ export const getStaticPaths = async()=>{
     };
 };
 // ページコンポーネント
-export default function BlogId({blog, isTag, setTag}:{blog: Blog, isTag:pageStateType, setTag:Dispatch<SetStateAction<pageStateType>>}){
-
+export default function BlogId({blog, blogs, isTag, setTag}:{blog: Blog,blogs:Blog[], isTag:pageStateType, setTag:Dispatch<SetStateAction<pageStateType>>}){
+    console.log(blogs)
     const dateprot = blog.createdAt.substring( 0, 10 ) ;
     const date = dateprot.replace( /-/g, " / ");
+
+
     
     const headingCorrectedBlog = blog.contents.replace( /<h1/g, '<h1 style="font-size: 35px; font-weight: bolder" ').replace( /<h2/g, '<h2 style="font-size: 25px; font-weight: bolder" ').replace( /<h3/g, '<h3 style="font-size: 20px; font-weight: bolder" ').replace( /<h4/g, '<h4 style="font-size: 15px; font-weight: bolder" ').replace( /<h5/g, '<h5 style="font-size: 13px; font-weight: bolder" ');
     
@@ -76,7 +82,7 @@ export default function BlogId({blog, isTag, setTag}:{blog: Blog, isTag:pageStat
         <>
         <Grid bg={"back.300"} templateColumns={{base: "repeat(1, 1fr)", md: "repeat(4, 1fr)"}} className={styles.container}>
             <GridItem colSpan={1}>
-                <Menu isTag={isTag} setTag={ setTag }/>
+                <Menu blogs={blogs} isTag={isTag} setTag={ setTag }/>
             </GridItem>
             <GridItem colSpan={{base: 1, md: 3}}>
             <Grid
