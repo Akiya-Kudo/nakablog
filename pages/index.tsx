@@ -10,6 +10,7 @@ import { Card } from '../src/components/Card'
 import { useState } from 'react';
 import { useSortBlogs } from '../src/hooks/useSortBlogs';
 
+
 export const getStaticProps = async()=>{
     const data = await client.get({endpoint: "blog"})
     return{
