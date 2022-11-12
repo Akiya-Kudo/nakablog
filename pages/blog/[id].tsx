@@ -43,9 +43,13 @@ const MenuSmallButton = ({text , bgcolor}: {text: string, bgcolor?: string}) => 
 export const getStaticProps = async(context: { params: { id: any; }; }) => {
     const id = context.params.id;
     const data = await client.get({endpoint:"blog", contentId: id})
+    const Blogsdata = await client.get({endpoint: "blog"})
     return {
         props:{
+            // ブログ詳細のデータ
             blog:data,
+            // 全ブログのデータ
+            blogs:Blogsdata.contents
         },
     };
 };
@@ -60,15 +64,17 @@ export const getStaticPaths = async()=>{
     };
 };
 // ページコンポーネント
-export default function BlogId({blog, isTag, setTag}:{blog: Blog, isTag:pageStateType, setTag:Dispatch<SetStateAction<pageStateType>>}){
+export default function BlogId({blog, blogs, isTag, setTag}:{blog: Blog,blogs:Blog[], isTag:pageStateType, setTag:Dispatch<SetStateAction<pageStateType>>}){
+    console.log(blogs)
     const dateprot = blog.createdAt.substring( 0, 10 ) ;
     const date = dateprot.replace( /-/g, " / ");
+
     // console.log(blog)
     return(
         <>
         <Grid bg={"back.300"} templateColumns={{base: "repeat(1, 1fr)", md: "repeat(4, 1fr)"}} className={styles.container}>
             <GridItem colSpan={1}>
-                <Menu isTag={isTag} setTag={ setTag }/>
+                <Menu blogs={blogs} isTag={isTag} setTag={ setTag }/>
             </GridItem>
             <GridItem colSpan={{base: 1, md: 3}}>
             <Grid

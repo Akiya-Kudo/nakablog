@@ -16,8 +16,8 @@ const MenuButton = ({text , isTag, setTag, number}: {text: pageStateType,isTag:p
     <Link href="/" legacyBehavior passHref className={ styles.link }>
       <CLink as="a" className={ styles.link }>
           <Center as="button" onClick={() => setTag(text) } fontSize={15} fontWeight="bold" bg={bgIsTag} w="100%" h={70} _hover={{ bg: "base.300" }} borderRadius={10}>
-            {text}
-            ({number})
+            {`${text}(${number})`}
+
           </Center>
       </CLink>
     </Link>
@@ -44,7 +44,7 @@ export const  MenuList = ({isTag, setTag,number}:{isTag:pageStateType, setTag:Di
   )
 }
 
-const AccordionMenu = ({isTag, setTag}:{isTag:pageStateType, setTag:Dispatch<SetStateAction<pageStateType>>}) => {
+const AccordionMenu = ({isTag, setTag, number}:{isTag:pageStateType, setTag:Dispatch<SetStateAction<pageStateType>>, number:TagBlogNumbers}) => {
   return (
     <Accordion mx={5} allowToggle display={{base: "block", md: "none"}}>
       <AccordionItem border="0px" >
@@ -55,7 +55,7 @@ const AccordionMenu = ({isTag, setTag}:{isTag:pageStateType, setTag:Dispatch<Set
           <AccordionIcon />
         </AccordionButton>
         <AccordionPanel m={0} py={0}>
-          <MenuList isTag={isTag} setTag={ setTag }/>
+          <MenuList isTag={isTag} setTag={ setTag } number={number}/>
         </AccordionPanel>
       </AccordionItem>
     </Accordion>
@@ -78,7 +78,7 @@ const Menu = ({isTag, setTag, blogs}:{isTag:pageStateType, setTag:Dispatch<SetSt
                 null
                 :<MenuList isTag={isTag} setTag={ setTag} number={number}/>}
             </Box>
-            <AccordionMenu isTag={isTag} setTag={ setTag }/>
+            <AccordionMenu isTag={isTag} setTag={ setTag} number={number}/>
         </Box>
     </>
   )
