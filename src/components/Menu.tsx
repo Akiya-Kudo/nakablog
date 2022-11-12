@@ -4,7 +4,7 @@ import Link from 'next/link'
 import styles from '../../styles/Home.module.css'
 import { basename } from 'path'
 import { pageStateType, Blog, Props, TagBlogNumbers } from '../types/MicroCms';
-import { useTagBlogNumbers } from '../hooks/useSortBlogs'
+import { useTagBlogNumbers, useArchive } from '../hooks/useSortBlogs';
 
 const MenuButton = ({text , isTag, setTag, number}: {text: pageStateType,isTag:pageStateType, setTag:Dispatch<SetStateAction<pageStateType>>, number:Number}) => {
   let bgIsTag = "";
@@ -66,6 +66,8 @@ const AccordionMenu = ({isTag, setTag, number}:{isTag:pageStateType, setTag:Disp
 
 const Menu = ({isTag, setTag, blogs}:{isTag:pageStateType, setTag:Dispatch<SetStateAction<pageStateType>>, blogs:Blog[]}) => {
    const number = useTagBlogNumbers(blogs)
+
+//    console.log(archive)
   return (
     <>
         <Box py={3} bg={"back.100"} minHeight={{base: "200px", md: "100vh"}} boxShadow="md" pos={{base: "unset", md: "fixed"}} w={{base: "100vw", md: "25vw"}}>
