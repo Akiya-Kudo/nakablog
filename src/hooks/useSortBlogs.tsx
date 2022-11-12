@@ -23,7 +23,7 @@ export const useSortBlogs = (blogs: Blog[], isTag:pageStateType) => {
 }
 
 export const useTagBlogNumbers =(blogs:Blog[])=>{
-    if(typeof blogs !== undefined){
+    if( blogs !== undefined){
         const tagBlogNumber ={ homeBlogs: blogs.length,
             eventBlogs: blogs.filter((blog: Blog) => blog.tag[0] == "イベント").length,
             dailyBlogs: blogs.filter((blog: Blog) => blog.tag[0] == "日常").length,
