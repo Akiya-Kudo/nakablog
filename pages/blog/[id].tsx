@@ -9,6 +9,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Dispatch, SetStateAction, useState } from "react";
 import { useArchive } from "../../src/hooks/useSortBlogs";
+import sanitizeHtml from 'sanitize-html';
 // ダイナミックSSGにおける型定義
 type BlogProp ={
     blog:{
@@ -74,9 +75,13 @@ export default function BlogId({blog, blogs, isTag, setTag}:{blog: Blog,blogs:Bl
     // 月別アーカイブ
     const archive = useArchive(blogs)
 
-    // const archiveLength = archive.
-    // const mounth =
+
+    
+    const headingCorrectedBlog = blog.contents.replace( /<h1/g, '<h1 style="font-size: 35px; font-weight: bolder" ').replace( /<h2/g, '<h2 style="font-size: 25px; font-weight: bolder" ').replace( /<h3/g, '<h3 style="font-size: 20px; font-weight: bolder" ').replace( /<h4/g, '<h4 style="font-size: 15px; font-weight: bolder" ').replace( /<h5/g, '<h5 style="font-size: 13px; font-weight: bolder" ');
+    
     // console.log(blog)
+    // const sanitizedContent = sanitizeHtml(blog.contents , { allowedTags: ["p", "br" , "img", "a", "strong", "em", "s", "code", "span","h6","h5","h4","h3","h2","h1","li", "pre", "ul", "sup","sub"], allowedAttributes: { button: ['class'], img: [ 'src', 'srcset', 'alt', 'title', 'width', 'height', 'loading' ], p: ["style"], a: ["href"]},disallowedTagsMode: 'escape', });
+
     return(
         <>
         <Grid bg={"back.300"} templateColumns={{base: "repeat(1, 1fr)", md: "repeat(4, 1fr)"}} className={styles.container}>
@@ -93,9 +98,9 @@ export default function BlogId({blog, blogs, isTag, setTag}:{blog: Blog,blogs:Bl
                 bg={"back.100"} borderRadius={10} boxShadow="md"
                 >
                     <AspectRatio overflow={"hidden"} borderTopRadius={15} ratio={6 / 4}>
-                        <Image src={ blog.thumbnail?.url ? blog.thumbnail.url : "/logo.png" } alt=''  layout="fill" objectFit='cover'></Image>
+                    {blog.thumbnail?.url ? <Image src={ blog.thumbnail.url }  alt='' fill/> : <Image src="/logo.png"  alt='' fill objectFit='contain' />}
                     </AspectRatio>
-                    <Center p={5} fontWeight="bold" fontSize={20}>{blog.title}</Center>
+                    <Center p={5} fontWeight="bold" fontSize={30}>{blog.title}</Center>
                     <HStack fontSize={13} p={3} color="base.700">
                         <Text>{date}</Text>
                         <Text> : </Text>
@@ -103,7 +108,8 @@ export default function BlogId({blog, blogs, isTag, setTag}:{blog: Blog,blogs:Bl
                     </HStack>
                     <Divider />
                     <Box p={5} fontSize={15}>
-                        <div dangerouslySetInnerHTML={{ __html: blog.contents }}></div>
+                        {/* <div dangerouslySetInnerHTML={{ __html: sanitizedContent }}></div> */}
+                        <div dangerouslySetInnerHTML={{ __html: headingCorrectedBlog }}></div>
                     </Box>
                 </GridItem>
 
@@ -146,6 +152,8 @@ export default function BlogId({blog, blogs, isTag, setTag}:{blog: Blog,blogs:Bl
 
                                 ))}
                             </Accordion>
+                         
+            
                         </GridItem>
                     </Grid>
                 </GridItem>
