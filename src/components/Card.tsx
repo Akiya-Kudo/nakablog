@@ -19,7 +19,7 @@ export const Card = (props: Props) => {
   const dateprot = props.createdAt.substring( 0, 10 ) ;
   const date = dateprot.replace( /-/g, " / ");
 
-  const sanitizedContent = sanitizeHtml(props.content, { allowedTags: [], allowedAttributes: { button: ['class']}, });
+  const sanitizedContent = sanitizeHtml(props.content, { allowedTags: [], allowedAttributes: { button: ['class']},disallowedTagsMode: 'discard', });
   let splitedContent = sanitizedContent.substring( 0, 120 ) ;
   if (splitedContent.length == 120) {
     splitedContent += "...";
