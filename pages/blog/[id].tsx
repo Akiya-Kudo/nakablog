@@ -152,7 +152,8 @@ export default function BlogId({blog, blogs, isTag, setTag}:{blog: Blog,blogs:Bl
                                                 <NextLink href={`/blog/${blog.id}`}>
                                                     <HStack left="0px" mx={5} color={"gray"} pos={"relative"} _hover={{ left: "3px", color:"blackAlpha.900", transition: "0.5s" }}  fontSize={15} fontWeight="bold" borderRadius={5} className={styles.linkSmall}>
                                                         <Text  mx={2}  h={30}  borderRadius={10}>
-                                                            {blog.title}
+                                                            { blog.title.substring( 0, 6 ) + "..."}
+                                                            {/* {blog.title} */}
                                                         </Text>
                                                         <Center pos={"absolute"} right={5} border="1px solid #009b85"  fontSize={13} fontWeight="500" px={1} borderRadius={5} color="base.700">
                                                             {blog.tag}
