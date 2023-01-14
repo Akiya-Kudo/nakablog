@@ -9,7 +9,7 @@ import { useTagBlogNumbers, useArchive } from '../hooks/useSortBlogs';
 const MenuButton = ({text , isTag, setTag, number}: {text: pageStateType,isTag:pageStateType, setTag:Dispatch<SetStateAction<pageStateType>>, number:Number}) => {
   let bgIsTag = "";
   if(isTag == text) bgIsTag = "accent.500";
-  let fontColor = "base.700"
+  let fontColor = "accent.700"
   if(isTag == text) fontColor = "whiteAlpha.900"
   let hoverBg = "base.500"
   if(isTag == text) hoverBg = "accent.300"
@@ -17,7 +17,7 @@ const MenuButton = ({text , isTag, setTag, number}: {text: pageStateType,isTag:p
   return (
     <Link href="/" legacyBehavior passHref className={ styles.link }>
       <CLink as="div" className={ styles.link }>
-          <Center as="a" onClick={() => setTag(text) } fontSize={15} fontWeight="bold" bg={bgIsTag} w="100%" h={70} textDecoration='none' _hover={{ bg: hoverBg, textDecorationColor:'none', textDecorationLine:0 }} borderRadius={10} color={fontColor} borderBottom="2px solid #a4dce1" borderRight="2px solid #a4dce1" mt={3}>
+          <Center as="a" onClick={() => setTag(text)} fontSize={15} fontWeight="bold" bg={bgIsTag} w="100%" h={50} textDecoration='none' _hover={{ bg: hoverBg, textDecorationColor:'none', textDecorationLine:0, color: "whiteAlpha.900" }} borderTopEndRadius={10} borderBottomEndRadius={10} borderBottomStartRadius={{base: 10, sm: 10, md: 0, lg: 0, xl: 0, "2xl": 0}}  borderTopStartRadius={{base: 10, sm: 10, md: 0, lg: 0, xl: 0, "2xl": 0}} color={fontColor}>
             {`${text}(${number})`}
           </Center>
       </CLink>
@@ -64,7 +64,7 @@ const AccordionMenu = ({isTag, setTag, number}:{isTag:pageStateType, setTag:Disp
 
 
 const Menu = ({isTag, setTag, blogs}:{isTag:pageStateType, setTag:Dispatch<SetStateAction<pageStateType>>, blogs:Blog[]}) => {
-   const number = useTagBlogNumbers(blogs)
+  const number = useTagBlogNumbers(blogs)
 
 //    console.log(archive)
   return (
@@ -83,7 +83,7 @@ const Menu = ({isTag, setTag, blogs}:{isTag:pageStateType, setTag:Dispatch<SetSt
               </CLink>
             </Link>
           </VStack>
-            <Box display={{base: "none", md: "block"}} m={3}>
+            <Box display={{base: "none", md: "block"}} marginRight={3}>
                 {typeof number== undefined?
                 null
                 :<MenuList isTag={isTag} setTag={ setTag} number={number}/>}

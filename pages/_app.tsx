@@ -22,25 +22,25 @@ function MyApp({ Component, pageProps }: AppProps) {
     breakpoints: breakpoints,
     colors: {
       back: {
-        100: "#fcfbfa",
-        300: "#f4f9f9",
-        500: "rgb(243, 243, 220)",
-        700: "rgb(255, 255, 243)",
-        900: "rgb(167, 167, 58)",
-      },
-      base: {
-        100: "#cee8e2",
-        300: "#a5e8cb",
-        500: "#a4dce1",
-        700: "#4494a3",
-        900: "rgb(58, 131, 63)",
+        100: "#ffffff",
+        300: "#f0f0f0",
+        500: "#f0f0f0",
+        700: "#f0f0f0",
+        900: "#f0f0f0",
       },
       accent: {
-        100: "#f3a599",
-        300: "#ffbb8a",
-        500: "#fa9d5a",
-        700: "#fd8f3f",
-        900: "#c04853",
+        100: "#349478",
+        300: "#349478",
+        500: "#349478",
+        700: "#349478",
+        900: "#349478",
+      },
+      base: {
+        100: "#5bc4a6",
+        300: "#5bc4a6",
+        500: "#5bc4a6",
+        700: "#5bc4a6",
+        900: "#5bc4a6",
       },
 
     },
@@ -56,4 +56,5 @@ export default MyApp
 // function createBreakpoints(arg0: { sm: string; md: string; lg: string; xl: string; }) {
 //   throw new Error('Function not implemented.');
 // }
+// カラー picker  #246B69 / #EFAA97 / #F0A0A8 / #F1A09E / #F6CBC0 / #ac2817
 
