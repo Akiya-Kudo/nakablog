@@ -22,6 +22,6 @@
 }
 
 
-/* .linkSmall:hover >div {
-  ba  color: #fff;
-} */
+.linkSmall:hover >div {
+    color: #fff;
+}

@@ -25,6 +25,8 @@ export const Card = (props: Props) => {
     splitedContent += "...";
   }
 
+  console.log(props.thumbnail?.url)
+
 
 
   return (
@@ -40,7 +42,7 @@ export const Card = (props: Props) => {
                     <LinkOverlay href={`blog/${props.id}`}>
                         <Center pt={3} fontWeight="bold" fontSize={20}>{ props.title }</Center>
                     </LinkOverlay>
-                    <HStack fontSize={13} p={3} color="base.700">
+                    <HStack fontSize={13} p={3} color="accent.700">
                         <Text>{date}</Text>
                         <Text> : </Text>
                         <Text>{ props.tag }</Text>

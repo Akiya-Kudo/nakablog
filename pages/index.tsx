@@ -49,7 +49,7 @@ const Home: NextPage<Props> = ({blogs, isTag, setTag}:{blogs: Blog[],isTag:pageS
             colSpan={{base: 1, sm: 2, lg: 3, xl: 4, "2xl": 5 }}
             // bg={"base.500"}
             borderRadius={10}
-            color="base.700"
+            color="accent.700"
           >
             <Center fontWeight={"bold"} minHeight={50}>
               <Box borderBottom="2px solid #f4c78a">

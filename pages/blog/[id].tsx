@@ -132,10 +132,13 @@ export default function BlogId({blog, blogs, isTag, setTag}:{blog: Blog,blogs:Bl
                             <MenuSmallLink text="研究" number={categoryNum.studyBlogs.toString()} setTag={ setTag }/>
                             <MenuSmallLink text="その他" number={categoryNum.otherBlogs.toString()} setTag={ setTag }/>
                         </GridItem>
+
+                        {/* アーカイブ */}
+
                         <GridItem
                         colSpan={1} bg={"back.100"} borderRadius={10} boxShadow="md" p={3}
                         >
-                            <Text mx={5} mt={2} mb={2} fontSize={15} fontWeight="bold" borderBottom={"2px solid #ffbb8a"}>アーカイブ</Text>
+                            <Text mx={5} mt={2} mb={2} fontSize={15} fontWeight="bold" borderBottom={"2px solid #fa9d59"}>アーカイブ</Text>
                             <Accordion  allowMultiple>
                                 {Object.keys(archive).map((index)=>(
                                     <AccordionItem key={index}>
@@ -150,7 +153,7 @@ export default function BlogId({blog, blogs, isTag, setTag}:{blog: Blog,blogs:Bl
                                         {archive[index].map((blog: Blog)=>(
                                             <AccordionPanel key={blog.id} pb={2} textAlign='center'>
                                                 <NextLink href={`/blog/${blog.id}`}>
-                                                    <HStack left="0px" mx={5} color={"gray"} pos={"relative"} _hover={{ left: "3px", color:"blackAlpha.900", transition: "0.5s" }}  fontSize={15} fontWeight="bold" borderRadius={5} className={styles.linkSmall}>
+                                                    <HStack left="0px" mx={5} color={"gray"} pos={"relative"} _hover={{ left: "3px", color:"blackAlpha.900", transition: "0.5s" }} fontSize={15} fontWeight="bold" borderRadius={5} className={styles.linkSmall}>
                                                         <Text  mx={2}  h={30}  borderRadius={10}>
                                                             { blog.title.substring( 0, 6 ) + "..."}
                                                             {/* {blog.title} */}
