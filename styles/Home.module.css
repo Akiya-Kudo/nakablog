@@ -9,6 +9,7 @@
 
 .link>a {
     text-decoration: none;
+    cursor: pointer;
 }
 
 .link>a:hover {
@@ -21,7 +22,6 @@
     color: #fff;
 }
 
-
-.linkSmall:hover >div {
+.linkSmall:hover>div {
     color: #fff;
 }
