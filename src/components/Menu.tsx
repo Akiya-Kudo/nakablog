@@ -16,11 +16,11 @@ const MenuButton = ({text , isTag, setTag, number}: {text: pageStateType,isTag:p
 
   return (
     <Link href="/" legacyBehavior passHref className={ styles.link }>
-      <CLink as="div" className={ styles.link }>
+      <Box as="div" className={ styles.link }>
           <Center as="a" onClick={() => setTag(text)} fontSize={15} fontWeight="bold" bg={bgIsTag} w="100%" h={50} textDecoration='none' _hover={{ bg: hoverBg, textDecorationColor:'none', textDecorationLine:0, color: "whiteAlpha.900" }} borderTopEndRadius={10} borderBottomEndRadius={10} borderBottomStartRadius={{base: 10, sm: 10, md: 0, lg: 0, xl: 0, "2xl": 0}}  borderTopStartRadius={{base: 10, sm: 10, md: 0, lg: 0, xl: 0, "2xl": 0}} color={fontColor}>
             {`${text}(${number})`}
           </Center>
-      </CLink>
+      </Box>
     </Link>
   )
 }
@@ -49,8 +49,8 @@ const AccordionMenu = ({isTag, setTag, number}:{isTag:pageStateType, setTag:Disp
   return (
     <Accordion mx={5} allowToggle display={{base: "block", md: "none"}}>
       <AccordionItem border="0px" >
-        <AccordionButton border={"1px solid #4494a3"} _hover={{ bg: "base.500", }} borderRadius={10} h={50}>
-          <Box flex='1' textAlign='center' ps={5} fontWeight="bold" color={"base.700"}>
+        <AccordionButton border={"1px solid #4494a3"} _hover={{ bg: "base.500"}} borderRadius={10} h={50}>
+          <Box flex='1' textAlign='center' ps={5} fontWeight="bold" color={"accent.700"} _hover={{color: "whiteAlpha.900"}} >
             メニュー
           </Box>
           <AccordionIcon color={"base.700"} />
@@ -72,15 +72,16 @@ const Menu = ({isTag, setTag, blogs}:{isTag:pageStateType, setTag:Dispatch<SetSt
         <Box py={3} bg={"back.100"} minHeight={{base: "200px", md: "100vh"}} boxShadow="md" pos={{base: "unset", md: "fixed"}} w={{base: "100vw", md: "25vw"}}>
           <VStack my={5}>
             <Link href="/" legacyBehavior passHref>
-              <CLink  as="a">
-                <HStack px={3}>
+              <Box cursor='pointer'>
+                {/* <HStack px={3}>
                   <Image src='../logo.png' height={100} alt='#'/>
                   <Heading color={"base.700"}p={2}>中川 ゼミ</Heading>
                 </HStack>
                 <Center fontWeight={"bold"} color="gray.600">
                   国際政治経済学部　国際経済学科
-                </Center>
-              </CLink>
+                </Center> */}
+                <Image src='/nakablog_logo_pre.png' height={100}/>
+              </Box>
             </Link>
           </VStack>
             <Box display={{base: "none", md: "block"}} marginRight={3}>
