@@ -121,7 +121,7 @@ export default function BlogId({blog, blogs, isTag, setTag}:{blog: Blog,blogs:Bl
                 </GridItem>
 
                 <GridItem colSpan={{base: 2, md: 1}}>
-                    <Grid templateColumns={{base: "repeat(2, 1fr)", md: "repeat(1, 1fr)"}} gap={5} w="100%">
+                    <Grid templateColumns={{base: "repeat(1, 1fr)", sm: "repeat(2, 1fr)", md: "repeat(1, 1fr)"}} gap={5} w="100%">
                         <GridItem
                         display={{base: "block", md: "none"}}
                         colSpan={1} bg={"back.100"} borderRadius={10} boxShadow="md" p={3}
@@ -153,12 +153,12 @@ export default function BlogId({blog, blogs, isTag, setTag}:{blog: Blog,blogs:Bl
                                         {archive[index].map((blog: Blog)=>(
                                             <AccordionPanel key={blog.id} pb={2} textAlign='center'>
                                                 <NextLink href={`/blog/${blog.id}`}>
-                                                    <HStack left="0px" mx={5} color={"gray"} pos={"relative"} _hover={{ left: "3px", color:"blackAlpha.900", transition: "0.5s" }} fontSize={15} fontWeight="bold" borderRadius={5} className={styles.linkSmall}>
-                                                        <Text  mx={2}  h={30}  borderRadius={10}>
-                                                            { blog.title.substring( 0, 6 ) + "..."}
+                                                    <HStack left="0px" mx={5} color={"gray"} pos={"relative"} _hover={{ left: "3px", color:"blackAlpha.900", transition: "0.5s" }} fontSize={13} fontWeight="bold" borderRadius={5} className={styles.linkSmall}>
+                                                        <Text  mx={2}  h={30}  borderRadius={10} fontSize={{base: 11, sm: 13}} className={styles.linkTitle}>
+                                                            { blog.title.substring( 0, 8 ) + "..."}
                                                             {/* {blog.title} */}
                                                         </Text>
-                                                        <Center pos={"absolute"} right={5} border="1px solid #009b85"  fontSize={13} fontWeight="500" px={1} borderRadius={5} color="base.700">
+                                                        <Center pos={"absolute"} right={5} border="1px solid #009b85"  fontSize={{base: 10, sm: 13}} fontWeight="500" px={1} borderRadius={5} color="base.700">
                                                             {blog.tag}
                                                         </Center>
                                                     </HStack>

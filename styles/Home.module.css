@@ -25,3 +25,7 @@
 .linkSmall:hover>div {
     color: #fff;
 }
+
+.linkTitle {
+    line-height: 30px;
+}
