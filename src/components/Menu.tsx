@@ -73,13 +73,14 @@ const Menu = ({isTag, setTag, blogs}:{isTag:pageStateType, setTag:Dispatch<SetSt
           <VStack my={5}>
             <Link href="/" legacyBehavior passHref>
               <Box cursor='pointer'>
-                <HStack px={3}>
+                {/* <HStack px={3}>
                   <Image src='../logo.png' height={100} alt='#'/>
                   <Heading color={"base.700"}p={2}>中川 ゼミ</Heading>
                 </HStack>
                 <Center fontWeight={"bold"} color="gray.600">
                   国際政治経済学部　国際経済学科
-                </Center>
+                </Center> */}
+                <Image src='/nakablog_logo_pre.png' height={100}/>
               </Box>
             </Link>
           </VStack>
