@@ -49,8 +49,8 @@ const AccordionMenu = ({isTag, setTag, number}:{isTag:pageStateType, setTag:Disp
   return (
     <Accordion mx={5} allowToggle display={{base: "block", md: "none"}}>
       <AccordionItem border="0px" >
-        <AccordionButton border={"1px solid #4494a3"} _hover={{ bg: "base.500", }} borderRadius={10} h={50}>
-          <Box flex='1' textAlign='center' ps={5} fontWeight="bold" color={"base.700"}>
+        <AccordionButton border={"1px solid #4494a3"} _hover={{ bg: "base.500"}} borderRadius={10} h={50}>
+          <Box flex='1' textAlign='center' ps={5} fontWeight="bold" color={"accent.700"} _hover={{color: "whiteAlpha.900"}} >
             メニュー
           </Box>
           <AccordionIcon color={"base.700"} />

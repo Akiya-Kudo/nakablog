@@ -64,8 +64,8 @@ const MenuSmallLink = ({text, number, setTag}: {text: pageStateType, number:Stri
 // コンポーネント
 const MenuSmallButton = ({text , bgcolor, number}: {text: string, bgcolor?: string, number:String}) => {
     return (
-            <HStack left="0px" mx={5} color={"gray"} pos={"relative"} _hover={{ left: "3px", color:"blackAlpha.900", transition: "0.5s" }}  fontSize={15} fontWeight="bold" borderRadius={5} className={styles.linkSmall}>
-                <Text  mx={5}  bg={bgcolor} h={30}  borderRadius={10}>
+            <HStack h={30} left="0px" mx={5} color={"gray"} pos={"relative"} _hover={{ left: "3px", color:"blackAlpha.900", transition: "0.5s" }}  fontSize={13} fontWeight="bold" borderRadius={5} className={styles.linkSmall}>
+                <Text  mx={5}  bg={bgcolor} h={30} lineHeight={7}  borderRadius={10}>
                     {text}
                 </Text>
                 <Center pos={"absolute"} right={5} border="1px solid #009b85"  fontSize={13} fontWeight="500" px={1} borderRadius={5} color="base.700">
@@ -121,7 +121,7 @@ export default function BlogId({blog, blogs, isTag, setTag}:{blog: Blog,blogs:Bl
                 </GridItem>
 
                 <GridItem colSpan={{base: 2, md: 1}}>
-                    <Grid templateColumns={{base: "repeat(2, 1fr)", md: "repeat(1, 1fr)"}} gap={5} w="100%">
+                    <Grid templateColumns={{base: "repeat(1, 1fr)", sm: "repeat(2, 1fr)", md: "repeat(1, 1fr)"}} gap={5} w="100%">
                         <GridItem
                         display={{base: "block", md: "none"}}
                         colSpan={1} bg={"back.100"} borderRadius={10} boxShadow="md" p={3}
@@ -138,13 +138,13 @@ export default function BlogId({blog, blogs, isTag, setTag}:{blog: Blog,blogs:Bl
                         <GridItem
                         colSpan={1} bg={"back.100"} borderRadius={10} boxShadow="md" p={3}
                         >
-                            <Text mx={5} mt={2} mb={2} fontSize={15} fontWeight="bold" borderBottom={"2px solid #fa9d59"}>アーカイブ</Text>
+                            <Text mx={5} mt={2} mb={2} fontSize={13} fontWeight="bold" borderBottom={"2px solid #fa9d59"}>アーカイブ</Text>
                             <Accordion  allowMultiple>
                                 {Object.keys(archive).map((index)=>(
                                     <AccordionItem key={index}>
                                         <h2>
                                             <AccordionButton _hover={{bg:"whiteAlpha.900"}}>
-                                                <Box flex='1' textAlign='left'>
+                                                <Box flex='1' >
                                                     <MenuSmallButton  number={archive[index].length}  text={index.split("_")[0] + "年" + index.split("_")[1] + "月"}/>
                                                 </Box>
                                                 <AccordionIcon />
@@ -153,12 +153,12 @@ export default function BlogId({blog, blogs, isTag, setTag}:{blog: Blog,blogs:Bl
                                         {archive[index].map((blog: Blog)=>(
                                             <AccordionPanel key={blog.id} pb={2} textAlign='center'>
                                                 <NextLink href={`/blog/${blog.id}`}>
-                                                    <HStack left="0px" mx={5} color={"gray"} pos={"relative"} _hover={{ left: "3px", color:"blackAlpha.900", transition: "0.5s" }} fontSize={15} fontWeight="bold" borderRadius={5} className={styles.linkSmall}>
-                                                        <Text  mx={2}  h={30}  borderRadius={10}>
-                                                            { blog.title.substring( 0, 6 ) + "..."}
+                                                    <HStack left="0px" mx={3} color={"gray"} pos={"relative"} _hover={{ left: "3px", color:"blackAlpha.900", transition: "0.5s" }} fontSize={11} fontWeight="bold" borderRadius={5} className={styles.linkSmall}>
+                                                        <Text h={30}  borderRadius={10} fontSize={{base: 11, sm: 13, md: 8, lg: 13}} className={styles.linkTitle}>
+                                                            { blog.title.substring( 0, 8 ) + "..."}
                                                             {/* {blog.title} */}
                                                         </Text>
-                                                        <Center pos={"absolute"} right={5} border="1px solid #009b85"  fontSize={13} fontWeight="500" px={1} borderRadius={5} color="base.700">
+                                                        <Center pos={"absolute"} right={5} border="1px solid #009b85"  fontSize={{base: 10, sm: 13}} fontWeight="500" px={1} borderRadius={5} color="base.700">
                                                             {blog.tag}
                                                         </Center>
                                                     </HStack>
