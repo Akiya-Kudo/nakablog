@@ -65,7 +65,7 @@ const MenuSmallLink = ({text, number, setTag}: {text: pageStateType, number:Stri
 const MenuSmallButton = ({text , bgcolor, number}: {text: string, bgcolor?: string, number:String}) => {
     return (
             <HStack left="0px" mx={5} color={"gray"} pos={"relative"} _hover={{ left: "3px", color:"blackAlpha.900", transition: "0.5s" }}  fontSize={15} fontWeight="bold" borderRadius={5} className={styles.linkSmall}>
-                <Text  mx={5}  bg={bgcolor} h={30}  borderRadius={10}>
+                <Text  mx={5}  bg={bgcolor} h={30}  borderRadius={10} >
                     {text}
                 </Text>
                 <Center pos={"absolute"} right={5} border="1px solid #009b85"  fontSize={13} fontWeight="500" px={1} borderRadius={5} color="base.700">
