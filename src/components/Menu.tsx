@@ -69,7 +69,7 @@ const Menu = ({isTag, setTag, blogs}:{isTag:pageStateType, setTag:Dispatch<SetSt
 //    console.log(archive)
   return (
     <>
-        <Box py={3} bg={"back.100"} minHeight={{base: "200px", md: "100vh"}} boxShadow="md" pos={{base: "unset", md: "fixed"}} w={{base: "100vw", md: "25vw"}}>
+        <Box py={3} bg={"back.100"} minHeight={{base: "200px", md: "100vh"}} boxShadow="md" pos={{base: "unset", md: "fixed"}} w={{base: null, md: "25vw"}}>
           <VStack my={5}>
             <Link href="/" legacyBehavior passHref>
               <Box cursor='pointer'>
